@@ -4,7 +4,7 @@
     <h1 class="dashboard-content-title">Opérations</h1>
 
     <div class="flex gap-3">
-        <a class="btn success" href="{{ route('operations.create') }}">Nouvelle opération</a>
+        <a class="btn success" href="{{ route('operations.create') }}">Nouvelle Opération</a>
         <a class="btn" href="{{ route('operations.index', ['format' => 'pdf', 'year' => request()-> year, 'month' => request()-> month, 'page' => request()-> page]) }}">Exporter en PDF</a>
     </div>
 

@@ -98,17 +98,6 @@ class OperationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Operation  $operation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Operation $operation)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Operation $operation = null)

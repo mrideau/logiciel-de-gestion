@@ -28,7 +28,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::resource('/operation-categories', OperationCategoryController::class)->names('operation-categories');
+    Route::resource('/operation-categories', OperationCategoryController::class)->except('show')->names('operation-categories');
     Route::resource('/operations', OperationController::class)->except('show')->names('operations');
 
     Route::controller(PageController::class)->prefix('pages')->name('pages.')->group(function () {
@@ -41,10 +41,5 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::get('/{page}/editor', [PageController::class, 'editor'])->name('editor');
     });
 });
-
-//Route::get('/{page}', [PageController::class, 'render']);
-//Route::get('/', [PageController::class, 'render']);
-//Route::get('/{any}', [PageController::class, 'render'])->where('any', '.*');
-//Route::any( '(.*)', [PageController::class, 'render']);
 
 Route::get('/{route?}', [PageController::class, 'render'])->where('route?', '.*');

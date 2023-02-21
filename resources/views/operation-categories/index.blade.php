@@ -3,7 +3,7 @@
 @section('dashboard-content')
     <h1 class="dashboard-content-title">Catégories Opérations</h1>
 
-    <a class="btn success" href="{{ route('operation-categories.create') }}">Nouvelle catégorie</a>
+    <a class="btn success" href="{{ route('operation-categories.create') }}">Nouvelle Catégorie</a>
 
     <table class="mt-5">
         <thead>

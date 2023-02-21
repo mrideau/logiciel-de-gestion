@@ -19,8 +19,6 @@ class OperationCategoryController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -37,17 +35,6 @@ class OperationCategoryController extends Controller
         $category->save();
 
         return redirect()->route('operation-categories.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\OperationCategory  $operationCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(OperationCategory $operationCategory)
-    {
-        //
     }
 
     /**
@@ -74,9 +61,7 @@ class OperationCategoryController extends Controller
      */
     public function destroy(OperationCategory $operationCategory)
     {
-//        dd($operationCategory);
-        $category = OperationCategory::find($operationCategory->id);
-//        dd($category);
+//        $category = OperationCategory::find($operationCategory->id);
         $operationCategory->delete();
 
         return redirect()->route('operation-categories.index');
