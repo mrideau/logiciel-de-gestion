@@ -28,12 +28,7 @@
 
             @if(isset($showActions))
                 <td>
-                    <form method="POST" action="{{ route('operations.destroy', $operation) }}">
-                        @csrf
-                        @method('DELETE')
-                        <a href="{{ route('operations.edit', $operation) }}">Editer</a>
-                        <button type="submit">Supprimer</button>
-                    </form>
+                    <a class="btn" href="{{ route('operations.edit', $operation) }}">Editer</a>
                 </td>
             @endif
         </tr>
@@ -41,7 +36,7 @@
     <tr>
         <td colspan="2"></td>
         <td>Total</td>
-        <td colspan="2" align="center">{{ $total }}</td>
+        <td class="{{ $total > 0 ? 'text-success' : 'text-danger' }}" colspan="2" align="center">{{ $total }}</td>
     </tr>
     </tbody>
 </table>

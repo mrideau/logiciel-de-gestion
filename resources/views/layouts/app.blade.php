@@ -15,17 +15,41 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     @vite(['resources/scss/app.scss'])
 
     @stack('styles')
 </head>
-<body>
-    @yield('content')
+<body class="relative">
 
-    @vite(['resources/js/app.js'])
+@if(session()->has('message'))
+    <div id="toast">
+        <p>
+            <button onclick="closeToast()">x</button>
+            {{ session()->get('message') }}
+        </p>
+    </div>
+@endif
 
-    @stack('scripts')
+
+@yield('content')
+
+@vite(['resources/js/app.js'])
+
+@stack('scripts')
+
+@if(session()->has('message'))
+    <script>
+        function closeToast() {
+            const toast = document.querySelector('#toast');
+            console.log(toast);
+            toast.remove();
+        }
+        {{--M.toast({html: '{{ session()->get('message') }}'})--}}
+    </script>
+@endif
 </body>
 </html>

@@ -24,7 +24,7 @@ class OperationCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return $this->edit();
     }
 
     /**
@@ -52,25 +52,21 @@ class OperationCategoryController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\OperationCategory  $operationCategory
-     * @return \Illuminate\Http\Response
      */
-    public function edit(OperationCategory $operationCategory)
+    public function edit(OperationCategory $operationCategory = null)
     {
-        //
+        return view('operation-categories.create-edit', compact('operationCategory'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateOperationCategoryRequest  $request
-     * @param  \App\Models\OperationCategory  $operationCategory
-     * @return \Illuminate\Http\Response
      */
     public function update(UpdateOperationCategoryRequest $request, OperationCategory $operationCategory)
     {
-        //
+        $operationCategory->fill($request->all());
+        $operationCategory->save();
+
+        return redirect()->route('operation-categories.index');
     }
 
     /**

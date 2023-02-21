@@ -26,7 +26,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/', function () {
         return view('dashboard');
-    });
+    })->name('dashboard');
 
     Route::resource('/operation-categories', OperationCategoryController::class)->names('operation-categories');
     Route::resource('/operations', OperationController::class)->except('show')->names('operations');
@@ -36,6 +36,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::post('/', 'store')->name('store');
         Route::get('/create', 'create')->name('create');
         Route::patch('/{page}', 'update')->name('update');
+        Route::delete('/{page}', 'destroy')->name('destroy');
         Route::get('/{page}/edit', 'edit')->name('edit');
         Route::get('/{page}/editor', [PageController::class, 'editor'])->name('editor');
     });

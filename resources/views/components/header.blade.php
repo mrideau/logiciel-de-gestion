@@ -1,13 +1,12 @@
-<header class="header">
-    <span>Title</span>
+<header class="flex items-center justify-between shadow-md px-8 py-6">
     <ul class="header-nav">
         @foreach($links as $link)
             <li class="header-nav-item">
-                <a href=".{{ $link->route }}">{{ $link->name }}</a>
+                <a class="{{ Request::url() == url($link->route) ? 'font-bold' : '' }}" href=".{{ $link->route }}">{{ $link->name }}</a>
             </li>
         @endforeach
     </ul>
-{{--    <div>--}}
-{{--        <a>Dashboard</a>--}}
-{{--    </div>--}}
+    @auth()
+        <a class="btn" href="{{ route('dashboard') }}">Dashboard</a>
+    @endauth
 </header>

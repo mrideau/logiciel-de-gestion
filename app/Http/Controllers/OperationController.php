@@ -16,22 +16,24 @@ class OperationController extends Controller
      */
     public function index()
     {
-        $filterYear = request('year');
-        $filterMonth = request('month');
+//        $filterYear = request('year');
+//        $filterMonth = request('month');
+//
+//        $operations = Operation::query();
+//
+//        if (isset($filterYear)) {
+//            $operations = $operations->whereYear('date', $filterYear);
+//        }
+//
+//        if (isset($filterMonth)) {
+//            $operations = $operations->whereMonth('date', $filterMonth);
+//        }
+//
+//        $operations = $operations->orderBy('date', 'ASC')->paginate();
 
-        $operations = Operation::query();
+        $operations = Operation::filter()->paginate();
 
-        if (isset($filterYear)) {
-            $operations = $operations->whereYear('date', $filterYear);
-        }
-
-        if (isset($filterMonth)) {
-            $operations = $operations->whereMonth('date', $filterMonth);
-        }
-
-        $operations = $operations->orderBy('date', 'ASC')->get();
-
-        $total = $operations->reduce(function($carry, $item) {
+        $total = collect($operations->items())->reduce(function($carry, $item) {
             $carry += $item->value;
             return $carry;
         });

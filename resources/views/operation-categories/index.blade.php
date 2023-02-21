@@ -1,31 +1,23 @@
 @extends('dashboard')
 
 @section('dashboard-content')
-    <form method="POST" action="{{route('operation-categories.store')}}" enctype="multipart/form-data">
-        @csrf
-        <input type="text" name="name">
-        <button type="submit">Ajouter</button>
-    </form>
+    <h1 class="dashboard-content-title">Catégories Opérations</h1>
 
-    <table>
+    <a class="btn success" href="{{ route('operation-categories.create') }}">Nouvelle catégorie</a>
+
+    <table class="mt-5">
         <thead>
         <tr>
-            <th>id</th>
-            <th>name</th>
+            <th>Nom</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         @foreach($operationCategories as $category)
             <tr>
-                <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
                 <td>
-                    <form method="POST" action="{{ route('operation-categories.destroy', $category) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Supprimer</button>
-                    </form>
+                    <a class="btn" href="{{ route('operation-categories.edit', $category) }}">Editer</a>
                 </td>
             </tr>
         @endforeach

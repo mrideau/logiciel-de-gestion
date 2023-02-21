@@ -21,6 +21,13 @@
     <script>
         window.editorConfig = @json($editorConfig ?? []);
 
+        delete window.editorConfig.styleManager;
+
+        const escapeName = (name) => `${name}`.trim().replace(/([^a-z0-9\w-:/]+)/gi, '-');
+        window.editorConfig.selectorManager = { escapeName };
+
+        console.log(window.editorConfig)
+
         Object.defineProperty(window, 'grapesjs', {
             value: {
                 plugins: {
@@ -73,11 +80,12 @@
             }
         })
     </script>
+
 </head>
 
 <body>
     <div id="{{ str_replace('#', '', $editorConfig->container ?? 'editor') }}"></div>
-    
+
     @foreach ($editorConfig->getScripts() as $script)
         <script src="{{ $script }}"></script>
     @endforeach
